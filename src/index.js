@@ -12,7 +12,7 @@ const students=require('./InitialData.js');
 // your code goes here
 
 app.get('/api/student',(req,res)=>{
-   res.send(students); 
+   res.send(students);
 });
 
 
@@ -68,6 +68,7 @@ app.delete('/api/student/:id',(req,res)=>{
         res.status(400).send('id not found');
     }
 });
+
 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
