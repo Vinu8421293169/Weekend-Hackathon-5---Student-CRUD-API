@@ -7,10 +7,25 @@ app.use(express.urlencoded());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+const students=require('./InitialData.js');
 // your code goes here
+
+app.get('/api/student',()=>{
+   res.send(students); 
+});
+
+
+app.get('/api/student/:id',(req,res)=>{
+    const id=req.params.id;
+    const student=students.filter((stu)=>stu.id===id);
+    if(!student){
+        res.status(404).send('id is invalid');
+    }else
+    res.send(student);
+});
 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
-module.exports = app; 
+module.exports = app;
