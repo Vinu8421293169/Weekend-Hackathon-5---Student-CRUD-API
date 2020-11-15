@@ -18,7 +18,7 @@ app.get('/api/student',(req,res)=>{
 
 app.get('/api/student/:id',(req,res)=>{
     const id=req.params.id;
-    const student=students.filter((stu)=>stu.id===id);
+    const student=students.filter((stu)=>stu.id===parseInt(id));
     if(!student){
         res.status(404).send('id is invalid');
     }else
