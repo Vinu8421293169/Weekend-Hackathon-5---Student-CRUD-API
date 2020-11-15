@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const students=require('./InitialData.js');
 // your code goes here
 
-app.get('/api/student',()=>{
+app.get('/api/student',(req,res)=>{
    res.send(students); 
 });
 
