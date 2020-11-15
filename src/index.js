@@ -15,14 +15,16 @@ app.get('/api/student',(req,res)=>{
    res.send(students);
 });
 
-
 app.get('/api/student/:id',(req,res)=>{
     const id=req.params.id;
     const student=students.filter((stu)=>stu.id===parseInt(id));
-    if(!student){
+    const findStudent=students.find((stu)=>stu.id===parseInt(id));
+    
+    if(findStudent){
+        res.send(student);
+    }else{
         res.status(404).send('id is invalid');
-    }else
-    res.send(student);
+    }
 });
 
 app.post('/api/student',(req,res)=>{
