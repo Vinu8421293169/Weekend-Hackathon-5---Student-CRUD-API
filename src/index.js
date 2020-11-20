@@ -21,7 +21,7 @@ app.get('/api/student/:id',(req,res)=>{
     const findStudent=students.find((stu)=>stu.id===parseInt(id));
     
     if(findStudent){
-        res.send(student);
+        res.status(200).send(student[0]);
     }else{
         res.status(404).send('id is invalid');
     }
