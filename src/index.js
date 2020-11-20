@@ -50,7 +50,7 @@ app.put('/api/student/:id',(req,res)=>{
     
     if(studentIndex!==-1 && req.body.name && req.body.currentClass && req.body.division){
         students[studentIndex]={id,...req.body};
-        res.send(students[studentIndex]);
+        res.status(200).send(students[studentIndex]);
     }else{
         res.status(400).send("invalid request");
     }
