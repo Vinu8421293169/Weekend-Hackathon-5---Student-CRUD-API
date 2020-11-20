@@ -19,7 +19,7 @@ app.get('/api/student/:id',(req,res)=>{
     const id=req.params.id;
     const student=students.find((stu)=>stu.id===parseInt(id));
     
-    if(findStudent){
+    if(student){
         res.status(200).send(student);
     }else{
         res.status(404).send('id is invalid');
@@ -30,8 +30,8 @@ app.post('/api/student',(req,res)=>{
 
 res.set({'Content-Type': 'application/x-www-form-urlencoded'});
     
-if(body.name && body.currentClass && body.division){
-        const student={id:students.length+1,...body};
+if(req.body.name && req.body.currentClass && req.body.division){
+        const student={id:students.length+1,...req.body};
         students.push(student);
         res.send({id:student.id});
     }else{
@@ -48,8 +48,8 @@ app.put('/api/student/:id',(req,res)=>{
     res.set({'Content-Type': 'application/x-www-form-urlencoded'});
 
     
-    if(student!==-1 && body.name && body.currentClass && body.division){
-        students[studentIndex]={id,...body};
+    if(student!==-1 && req.body.name && req.body.currentClass && req.body.division){
+        students[studentIndex]={id,...req.body};
         res.send(students[studentIndex]);
     }else{
         res.status(400).send("invalid request");
