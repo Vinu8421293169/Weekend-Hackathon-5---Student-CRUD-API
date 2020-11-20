@@ -63,8 +63,7 @@ app.delete('/api/student/:id',(req,res)=>{
     const findStudent=students.find((stu)=>stu.id===id);
 
     if(findStudent){
-        const filteredStudents=students.filter((stu)=>stu.id!==id);
-        students=filteredStudents;
+        students.splice(id,1);
         res.status(200).send({id});
     }else{
         res.status(404).send('id not found');
