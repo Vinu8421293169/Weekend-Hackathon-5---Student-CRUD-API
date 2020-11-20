@@ -29,9 +29,9 @@ app.get('/api/student/:id',(req,res)=>{
 
 app.post('/api/student',(req,res)=>{
 
-res.set({'Content-Type': 'application/x-www-form-urlencoded'});
     
 if(req.body.name && req.body.currentClass && req.body.division){
+    res.set({'Content-Type': 'application/x-www-form-urlencoded'});
         const student={id:count++,...req.body};
         students.push(student);
         res.send({id:student.id});
@@ -46,10 +46,9 @@ app.put('/api/student/:id',(req,res)=>{
     
     const studentIndex=students.findIndex((stu)=>stu.id===id);
 
-    res.set({'Content-Type': 'application/x-www-form-urlencoded'});
-
     
     if(studentIndex!==-1){
+    res.set({'Content-Type': 'application/x-www-form-urlencoded'});
         if(req.body.name){
             students[studentIndex].name=req.body.name;
         }
