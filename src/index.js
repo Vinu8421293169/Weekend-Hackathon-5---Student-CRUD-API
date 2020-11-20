@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 const students=require('./InitialData.js');
 // your code goes here
+let count=students.length+1;
 
 app.get('/api/student',(req,res)=>{
    res.send(students);
@@ -31,7 +32,7 @@ app.post('/api/student',(req,res)=>{
 res.set({'Content-Type': 'application/x-www-form-urlencoded'});
     
 if(req.body.name && req.body.currentClass && req.body.division){
-        const student={id:students.length+1,...req.body};
+        const student={id:count++,...req.body};
         students.push(student);
         res.send({id:student.id});
     }else{
