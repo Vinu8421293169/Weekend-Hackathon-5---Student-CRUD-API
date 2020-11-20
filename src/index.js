@@ -48,8 +48,19 @@ app.put('/api/student/:id',(req,res)=>{
     res.set({'Content-Type': 'application/x-www-form-urlencoded'});
 
     
-    if(studentIndex!==-1 && req.body.name && req.body.currentClass && req.body.division){
-        students[studentIndex]={id,...req.body};
+    if(studentIndex!==-1){
+        if(req.body.name){
+            students[studentIndex].name=req.body.name;
+        }
+
+        if(req.body.currentClass){
+            students[studentIndex].currentClass=req.body.currentClass;
+        }
+
+        if(req.body.division){
+            students[studentIndex].division=req.body.division;
+        }
+
         res.status(200).send(students[studentIndex]);
     }else{
         res.status(400).send("invalid request");
@@ -60,10 +71,10 @@ app.put('/api/student/:id',(req,res)=>{
 app.delete('/api/student/:id',(req,res)=>{
     const id=parseInt(req.params.id);
 
-    const findStudent=students.find((stu)=>stu.id===id);
+    const studentIndex=students.findIndex((stu)=>stu.id===id);
 
-    if(findStudent){
-        students.splice(id,1);
+    if(studentIndex!==-1){
+        students.splice(studentIndex,1);
         res.status(200).send({id});
     }else{
         res.status(404).send('id not found');
