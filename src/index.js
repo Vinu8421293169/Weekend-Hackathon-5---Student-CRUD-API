@@ -48,7 +48,7 @@ app.put('/api/student/:id',(req,res)=>{
     res.set({'Content-Type': 'application/x-www-form-urlencoded'});
 
     
-    if(student!==-1 && req.body.name && req.body.currentClass && req.body.division){
+    if(studentIndex!==-1 && req.body.name && req.body.currentClass && req.body.division){
         students[studentIndex]={id,...req.body};
         res.send(students[studentIndex]);
     }else{
