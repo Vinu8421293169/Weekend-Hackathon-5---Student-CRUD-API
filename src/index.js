@@ -28,13 +28,12 @@ app.get('/api/student/:id',(req,res)=>{
 });
 
 app.post('/api/student',(req,res)=>{
-
+res.set({'Content-type': 'application/x-www-form-urlencoded'});
     
 if(req.body.name && req.body.currentClass && req.body.division){
-    res.set({'Content-Type': 'application/x-www-form-urlencoded'});
-        const student={id:count++,...req.body};
+        const student={id:count++,name:req.body.name, currentClass:Number(req.body.currentClass), division:req.body.division};
         students.push(student);
-        res.send(student.id);
+        res.send({id:student.id});
     }else{
         res.status(400).send("invalid request");
     }
