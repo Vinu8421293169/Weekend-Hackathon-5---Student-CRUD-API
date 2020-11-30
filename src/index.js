@@ -28,14 +28,16 @@ app.get('/api/student/:id',(req,res)=>{
 });
 
 app.post('/api/student',(req,res)=>{
-res.set({'Content-type': 'application/x-www-form-urlencoded'});
+res.set({'Content-type': 'application/json'});
     
 if(req.body.name && req.body.currentClass && req.body.division){
         const student={id:count++,name:req.body.name, currentClass:Number(req.body.currentClass), division:req.body.division};
         students.push(student);
         res.send({id:student.id});
+        return
     }else{
         res.status(400).send("invalid request");
+        return
     }
     
 });
@@ -46,14 +48,14 @@ app.put('/api/student/:id',(req,res)=>{
     const studentIndex=students.findIndex((stu)=>stu.id===id);
 
     
-    if(studentIndex!==-1){
+    if(studentIndex!==-1 && (req.body.name||req.body.currentClass ||req.body.division)){
     res.set({'Content-Type': 'application/x-www-form-urlencoded'});
         if(req.body.name){
             students[studentIndex].name=req.body.name;
         }
 
         if(req.body.currentClass){
-            students[studentIndex].currentClass=req.body.currentClass;
+            students[studentIndex].currentClass=Number(req.body.currentClass);
         }
 
         if(req.body.division){
