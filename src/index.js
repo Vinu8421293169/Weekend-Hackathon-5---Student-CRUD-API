@@ -33,7 +33,7 @@ res.set({'Content-type': 'application/json'});
 if(req.body.name && req.body.currentClass && req.body.division){
         const student={id:count++,name:req.body.name, currentClass:Number(req.body.currentClass), division:req.body.division};
         students.push(student);
-        res.send({id:student.id});
+        res.send({id:parseInt(student.id)});
         return
     }else{
         res.status(400).send("invalid request");
