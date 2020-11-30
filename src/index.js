@@ -34,7 +34,7 @@ if(req.body.name && req.body.currentClass && req.body.division){
     res.set({'Content-Type': 'application/x-www-form-urlencoded'});
         const student={id:count++,...req.body};
         students.push(student);
-        res.send({id:student.id});
+        res.send(student.id);
     }else{
         res.status(400).send("invalid request");
     }
